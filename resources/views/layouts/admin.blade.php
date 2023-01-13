@@ -45,13 +45,13 @@
                         <li class="nav-item mb-3">
                             <a href="{{ route('admin.dashboard') }}"
                                 class="nav-link text-light text-center {{ Route::currentRouteName() === 'admin.dashboard' ? 'bg-secondary' : '' }}">
-                                <i class="fa-solid fa-gauge"></i>
+                                <i class="fa-solid fa-gauge fa-lg fa-fw"></i>
                                 Dasboard
                             </a>
 
                             <a href="{{ route('admin.projects.index') }}"
                                 class="nav-link text-light text-center {{ Route::currentRouteName() === 'admin.projects.index' ? 'bg-secondary' : '' }}">
-                                <i class="fa-solid fa-border-all"></i>
+                                <i class="fa-solid fa-border-all fa-lg fa-fw"></i>
                                 Tutti i progetti
                             </a>
                             @if (Auth::check() && Auth::user()->isAdmin())
@@ -59,7 +59,8 @@
                                     class="nav-link text-white text-center {{ Route::currentRouteName() == 'admin.types.index' ? 'bg-secondary' : '' }}">
                                     <i class="fa-solid fa-folder-open fa-lg fa-fw"></i> Types
                                 </a>
-                                <a class="nav-link text-white text-center" href="#">
+                                <a href="{{ route('admin.tags.index') }}"
+                                    class="nav-link text-white text-center {{ Route::currentRouteName() == 'admin.tags.index' ? 'bg-secondary' : '' }}">
                                     <i class="fa-solid fa-bookmark fa-lg fa-fw"></i> Tags
                                 </a>
                                 <a class="nav-link text-white text-center" href="#">

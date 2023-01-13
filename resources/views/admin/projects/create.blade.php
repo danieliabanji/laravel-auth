@@ -49,6 +49,19 @@
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
+            <div class="mb-3">
+                <label for="tags" class="form-label">Tags</label>
+                <select multiple class="form-select" name="tags[]" id="tags">
+                    <option value="">Seleziona tag</option>
+                    @forelse ($tags as $tag)
+                        <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                    @empty
+                        <option value="">No tag</option>
+                    @endforelse
+
+                </select>
+
+            </div>
 
             <button type="submit" class="btn btn-success">Aggiungi</button>
             <button type="reset" class="btn btn-danger">Resetta</button>

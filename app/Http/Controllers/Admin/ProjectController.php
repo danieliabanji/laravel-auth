@@ -5,10 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
-use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\Type;
-use Illuminate\Auth\Events\Validated;
+use App\Models\Tag;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 
@@ -40,7 +39,8 @@ class ProjectController extends Controller
     public function create()
     {
         $types = Type::all();
-        return view('admin.projects.create', compact('types'));
+        $tags = Tag::all();
+        return view('admin.projects.create', compact('types','tags'));
     }
 
     /**
@@ -57,11 +57,16 @@ class ProjectController extends Controller
         $form_data['slug'] = $slug;
         $data['user_id'] = $userId;
         if($request->hasFile('cover_image')){
-            $path = Storage::disk('public')->put('project_images', $request->cover_image);
+            $path = Storage::put('project_images', $request->cover_image);
             $form_data['project_images'] = $path;
         }
 
         $new_project = Project::create($form_data);
+
+        if($request->has('tags')){
+            $new_project->tags()->attach($request->tags);
+        }
+
         return redirect()->route('admin.projects.index', $new_project->slug)->with('message', "La creazione di $new_project->title è andata a buon fine!");
     }
 
@@ -93,7 +98,8 @@ class ProjectController extends Controller
             abort(403);
         }
         $types = Type::all();
-        return view('admin.projects.edit', compact('project','types'));
+        $tags = Tag::all();
+        return view('admin.projects.edit', compact('project','types','tags'));
     }
 
     /**
@@ -116,10 +122,15 @@ class ProjectController extends Controller
                 Storage::delete($project->cover_image);
             }
 
-            $path = Storage::disk('public')->put('project_images', $request->cover_image);
+            $path = Storage::put('project_images', $request->cover_image);
             $form_data['cover_image'] = $path;
         }
         $project->update($form_data);
+
+        if($request->has('tags')){
+            $project->tags()->sync($request->tags);
+        }
+
         return redirect()->route('admin.projects.index')->with('message', "Hai aggiornato $project->title correttamente!");
     }
 
@@ -134,6 +145,10 @@ class ProjectController extends Controller
         if(!Auth::user()->isAdmin() && $project->user_id !== Auth::id()){
             abort(403);
         }
+        if($project->cover_image){
+            Storage::delete($post->cover_image);
+        }
+
         $project->delete();
         return redirect()->route('admin.projects.index')->with('message', "$project->title è stato cancellato correttamente!");
     }

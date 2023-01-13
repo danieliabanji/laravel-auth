@@ -3,7 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\TypeController;
-
+use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\DashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +31,7 @@ Route::middleware(['auth', 'verified'])->name('admin.')->prefix('admin')
          ->name('dashboard');
         Route::resource('projects', ProjectController::class)->parameters(['projects' => 'project:slug']);
         Route::resource('types', TypeController::class)->parameters(['types' => 'type:slug']);
+        Route::resource('tags', TagController::class)->parameters(['tags' => 'tag:slug'])->except('show','create','edit');
    });
 
 // Route::middleware('auth')->group(function () {

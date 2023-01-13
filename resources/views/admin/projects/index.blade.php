@@ -24,7 +24,8 @@
                     <th scope="col">Titolo</th>
                     <th scope="col">Data di creazione</th>
                     <th scope="col">Type</th>
-                    <th scope="col">Azioni</th>
+                    <th scope="col">Tags</th>
+                    <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -34,6 +35,7 @@
                         <td>{{ $project->title }}</th>
                         <td>{{ $project->created_at }}</td>
                         <td>{{ $project->type ? $project->type->name : 'Senza tipo' }}</td>
+                        <td>{{ $project->tags && count($project->tags) > 0 ? count($project->tags) : 0 }}</td>
                         <td>
                             <a href="{{ route('admin.projects.show', $project->slug) }}" class="btn btn-success">
                                 <i class="fa-solid fa-eye"></i>
