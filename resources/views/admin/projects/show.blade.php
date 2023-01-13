@@ -23,7 +23,7 @@
                 </form>
             </div>
         </div>
-        <p class="mt-4">{{ $project->content }}</p>
+        <p class="mt-4">{!! $project->content !!}</p>
         <img src="{{ asset('storage/' . $project->cover_image) }}">
         @include('partials.modal')
     </div>

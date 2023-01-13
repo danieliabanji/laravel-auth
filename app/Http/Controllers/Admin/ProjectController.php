@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\Type;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 
@@ -74,6 +76,8 @@ class ProjectController extends Controller
         if(!Auth::user()->isAdmin() && $project->user_id !== Auth::id()){
             abort(403);
         }
+
+
         return view('admin.projects.show', compact('project'));
     }
 

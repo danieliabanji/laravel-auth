@@ -19,9 +19,9 @@
             </div>
         </div>
         <ul>
-            {{-- @foreach ($type->projects as $project)
+            @foreach ($type->projects as $project)
                 <li>{{ $project->title }}</li>
-            @endforeach --}}
+            @endforeach
         </ul>
         @include('partials.modal')
     </div>

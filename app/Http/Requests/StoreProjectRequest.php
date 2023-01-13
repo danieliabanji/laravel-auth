@@ -25,7 +25,7 @@ class StoreProjectRequest extends FormRequest
     {
         return [
             'title' => 'required|max:150|unique:projects',
-            'content' => 'nullable|max:300',
+            'content' => 'nullable',
             'cover_image' => 'nullable|image|max: 250',
             'type_id' => 'nullable|exists:types,id'
 
@@ -37,7 +37,6 @@ class StoreProjectRequest extends FormRequest
             'title.required' => 'Il titolo è obbligatorio',
             'title.max' => 'Il titolo può avere massimo 150 caratteri',
             'title.unique' => 'Esiste già un progetto con questo titolo',
-            'content.max' => 'La descrizione può avere massimo 300 caratteri'
         ];
     }
 }
