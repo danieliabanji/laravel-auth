@@ -57,7 +57,7 @@
                             @if (Auth::check() && Auth::user()->isAdmin())
                                 <a href="{{ route('admin.types.index') }}"
                                     class="nav-link text-white text-center {{ Route::currentRouteName() == 'admin.types.index' ? 'bg-secondary' : '' }}">
-                                    <i class="fa-solid fa-folder-open fa-lg fa-fw"></i> Categories
+                                    <i class="fa-solid fa-folder-open fa-lg fa-fw"></i> Types
                                 </a>
                                 <a class="nav-link text-white text-center" href="#">
                                     <i class="fa-solid fa-bookmark fa-lg fa-fw"></i> Tags
