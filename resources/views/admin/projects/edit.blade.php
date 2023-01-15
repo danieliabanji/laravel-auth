@@ -58,7 +58,23 @@
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
-            <div class="mb-3">
+            @foreach ($tags as $tag)
+                <div class="form-check form-check-inline">
+
+                    @if (old('tags'))
+                        <input type="checkbox" class="form-check-input" id="{{ $tag->slug }}" name="tags[]"
+                            value="{{ $tag->id }}" {{ in_array($tag->id, old('tags', [])) ? 'checked' : '' }}>
+                    @else
+                        <input type="checkbox" class="form-check-input" id="{{ $tag->slug }}" name="tags[]"
+                            value="{{ $tag->id }}" {{ $project->tags->contains($tag) ? 'checked' : '' }}>
+                    @endif
+                    <label class="form-check-label" for="{{ $tag->slug }}">{{ $tag->name }}</label>
+                </div>
+            @endforeach
+            @error('tags')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+            {{-- <div class="mb-3">
                 <label for="tags" class="form-label">Tags</label>
                 <select multiple class="form-select" name="tags[]" id="tags">
                     <option value="">Seleziona tag</option>
@@ -77,7 +93,7 @@
 
                 </select>
 
-            </div>
+            </div> --}}
 
             <button type="submit" class="btn btn-success">Aggiungi</button>
             <button type="reset" class="btn btn-danger">Resetta</button>

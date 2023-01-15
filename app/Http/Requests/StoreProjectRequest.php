@@ -27,12 +27,14 @@ class StoreProjectRequest extends FormRequest
             'title' => 'required|max:150|unique:projects',
             'content' => 'nullable',
             'cover_image' => 'nullable|image|max: 250',
-            'type_id' => 'nullable|exists:types,id'
+            'type_id' => 'nullable|exists:types,id',
+            'tags' => 'nullable|exists:tags,id'
 
         ];
     }
 
-    public function messages(){
+    public function messages()
+    {
         return [
             'title.required' => 'Il titolo è obbligatorio',
             'title.max' => 'Il titolo può avere massimo 150 caratteri',

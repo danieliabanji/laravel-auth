@@ -22,7 +22,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        if(Auth::user()->isAdmin()){
+        if (Auth::user()->isAdmin()) {
             $projects = Project::all();
         } else {
             $userId = Auth::id();
@@ -40,7 +40,7 @@ class ProjectController extends Controller
     {
         $types = Type::all();
         $tags = Tag::all();
-        return view('admin.projects.create', compact('types','tags'));
+        return view('admin.projects.create', compact('types', 'tags'));
     }
 
     /**
@@ -55,15 +55,15 @@ class ProjectController extends Controller
         $form_data = $request->validated();
         $slug = Project::generateSlug($request->title);
         $form_data['slug'] = $slug;
-        $data['user_id'] = $userId;
-        if($request->hasFile('cover_image')){
+        $form_data['user_id'] = $userId;
+        if ($request->hasFile('cover_image')) {
             $path = Storage::put('project_images', $request->cover_image);
             $form_data['project_images'] = $path;
         }
 
         $new_project = Project::create($form_data);
 
-        if($request->has('tags')){
+        if ($request->has('tags')) {
             $new_project->tags()->attach($request->tags);
         }
 
@@ -78,7 +78,7 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        if(!Auth::user()->isAdmin() && $project->user_id !== Auth::id()){
+        if (!Auth::user()->isAdmin() && $project->user_id !== Auth::id()) {
             abort(403);
         }
 
@@ -94,12 +94,12 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        if(!Auth::user()->isAdmin() && $project->user_id !== Auth::id()){
+        if (!Auth::user()->isAdmin() && $project->user_id !== Auth::id()) {
             abort(403);
         }
         $types = Type::all();
         $tags = Tag::all();
-        return view('admin.projects.edit', compact('project','types','tags'));
+        return view('admin.projects.edit', compact('project', 'types', 'tags'));
     }
 
     /**
@@ -111,13 +111,13 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        if(!Auth::user()->isAdmin() && $project->user_id !== Auth::id()){
+        if (!Auth::user()->isAdmin() && $project->user_id !== Auth::id()) {
             abort(403);
         }
         $form_data = $request->validated();
         $slug = Project::generateSlug($request->title);
         $form_data['slug'] = $slug;
-        if($request->hasFile('cover_image')){
+        if ($request->hasFile('cover_image')) {
             if ($project->cover_image) {
                 Storage::delete($project->cover_image);
             }
@@ -127,8 +127,10 @@ class ProjectController extends Controller
         }
         $project->update($form_data);
 
-        if($request->has('tags')){
+        if ($request->has('tags')) {
             $project->tags()->sync($request->tags);
+        } else {
+            $project->tags()->sync([]);
         }
 
         return redirect()->route('admin.projects.index')->with('message', "Hai aggiornato $project->title correttamente!");
@@ -142,11 +144,11 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        if(!Auth::user()->isAdmin() && $project->user_id !== Auth::id()){
+        if (!Auth::user()->isAdmin() && $project->user_id !== Auth::id()) {
             abort(403);
         }
-        if($project->cover_image){
-            Storage::delete($post->cover_image);
+        if ($project->cover_image) {
+            Storage::delete($project->cover_image);
         }
 
         $project->delete();
