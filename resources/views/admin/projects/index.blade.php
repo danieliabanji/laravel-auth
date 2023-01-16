@@ -3,9 +3,9 @@
 @section('title', 'Tutti i progetti')
 
 @section('content')
-    <div class="container mt-5">
+    <div class="mt-5">
         <h2 class="text-center  mb-3">Tutti i progetti</h2>
-        <div class="control text-end  mb-3">
+        <div class="control text-end mx-3 mb-3">
             <a href="{{ route('admin.projects.create') }}" class="btn btn-success">
                 <i class="fa-solid fa-plus"></i>
             </a>
@@ -17,7 +17,7 @@
             </div>
         @endif
 
-        <table class="table">
+        <table class="table table-striped">
             <thead>
                 <tr>
                     <th scope="col">#</th>

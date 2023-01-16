@@ -23,13 +23,21 @@
                 </form>
             </div>
         </div>
-        <p class="mt-4">{!! $project->content !!}</p>
-        <img src="{{ asset('storage/' . $project->cover_image) }}">
-        @if ($project->tags && count($project->tags) > 0)
-            @foreach ($project->tags as $tag)
-                <span>{{ $tag->name }}</span>
-            @endforeach
-        @endif
+        <div>
+
+            <p class="mt-4">{!! $project->content !!}</p>
+        </div>
+
+        <div class="my-3">
+            <h5>Tags</h5>
+            @if ($project->tags && count($project->tags) > 0)
+                @foreach ($project->tags as $tag)
+                    <span>{{ $tag->name }}</span>
+                @endforeach
+            @endif
+        </div>
+
+        <img src="{{ asset('storage/' . $project->cover_image) }}" class="my-3">
         @include('partials.modal')
     </div>
 @endsection

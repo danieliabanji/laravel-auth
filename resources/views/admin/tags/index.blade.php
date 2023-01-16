@@ -1,8 +1,8 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h1>Tags</h1>
-    <form action="{{ route('admin.tags.store') }}" method="post" class="d-flex align-items-center">
+    <h1 class="m-3">Tags</h1>
+    <form action="{{ route('admin.tags.store') }}" method="post" class="d-flex align-items-center m-3">
         @csrf
         <div class="input-group mb-3">
             <input type="text" name="name" class="form-control" placeholder="

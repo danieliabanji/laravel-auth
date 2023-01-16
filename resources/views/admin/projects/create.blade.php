@@ -32,10 +32,18 @@
             </div>
             <div class="mb-3">
                 <img id="uploadPreview" width="100" src="https://via.placeholder.com/300x200">
-                <label for="cover_image" class="form-label">Immagine</label>
+                <label for="create_cover_image" class="form-label">Immagine</label>
                 <input type="file" name="cover_image" id="create_cover_image"
                     class="form-control  @error('cover_image') is-invalid @enderror">
                 @error('cover_image')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="mb-3">
+                <label for="git_link" class="form-label">Git</label>
+                <input type="link" name="git_link" id="git_link"
+                    class="form-control  @error('git_link') is-invalid @enderror">
+                @error('git_link')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>

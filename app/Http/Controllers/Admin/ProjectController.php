@@ -62,7 +62,7 @@ class ProjectController extends Controller
         $form_data['slug'] = $slug;
         $form_data['user_id'] = $userId;
         if ($request->hasFile('cover_image')) {
-            $path = Storage::put('project_images', $request->cover_image);
+            $path = Storage::disk('public')->put('project_images', $request->cover_image);
             $form_data['project_images'] = $path;
         }
 
@@ -127,7 +127,7 @@ class ProjectController extends Controller
                 Storage::delete($project->cover_image);
             }
 
-            $path = Storage::put('project_images', $request->cover_image);
+            $path = Storage::disk('public')->put('project_images', $request->cover_image);
             $form_data['cover_image'] = $path;
         }
         $project->update($form_data);

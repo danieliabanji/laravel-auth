@@ -42,31 +42,39 @@
             <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-dark navbar-dark sidebar collapse">
                 <div class="position-sticky py-3">
                     <ul class="nav flex-column">
-                        <li class="nav-item mb-3">
+                        <li class="nav-item">
                             <a href="{{ route('admin.dashboard') }}"
-                                class="nav-link text-light text-center {{ Route::currentRouteName() === 'admin.dashboard' ? 'bg-secondary' : '' }}">
+                                class="nav-link text-light {{ Route::currentRouteName() === 'admin.dashboard' ? 'bg-secondary' : '' }}">
                                 <i class="fa-solid fa-gauge fa-lg fa-fw"></i>
                                 Dasboard
                             </a>
-
+                        </li>
+                        <li class="nav-item">
                             <a href="{{ route('admin.projects.index') }}"
-                                class="nav-link text-light text-center {{ Route::currentRouteName() === 'admin.projects.index' ? 'bg-secondary' : '' }}">
+                                class="nav-link text-light {{ Route::currentRouteName() === 'admin.projects.index' ? 'bg-secondary' : '' }}">
                                 <i class="fa-solid fa-border-all fa-lg fa-fw"></i>
                                 Tutti i progetti
                             </a>
-                            @if (Auth::check() && Auth::user()->isAdmin())
+                        </li>
+                        @if (Auth::check() && Auth::user()->isAdmin())
+                            <li class="nav-item">
                                 <a href="{{ route('admin.types.index') }}"
-                                    class="nav-link text-white text-center {{ Route::currentRouteName() == 'admin.types.index' ? 'bg-secondary' : '' }}">
+                                    class="nav-link text-white {{ Route::currentRouteName() == 'admin.types.index' ? 'bg-secondary' : '' }}">
                                     <i class="fa-solid fa-folder-open fa-lg fa-fw"></i> Types
                                 </a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="{{ route('admin.tags.index') }}"
-                                    class="nav-link text-white text-center {{ Route::currentRouteName() == 'admin.tags.index' ? 'bg-secondary' : '' }}">
+                                    class="nav-link text-white {{ Route::currentRouteName() == 'admin.tags.index' ? 'bg-secondary' : '' }}">
                                     <i class="fa-solid fa-bookmark fa-lg fa-fw"></i> Tags
                                 </a>
-                                <a class="nav-link text-white text-center" href="#">
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="#">
                                     <i class="fa-solid fa-users fa-lg fa-fw"></i> Users
                                 </a>
-                            @endif
+                            </li>
+                        @endif
 
 
                         </li>
@@ -74,7 +82,7 @@
                 </div>
             </nav>
 
-            <main class="col-md-9 col-lg-10 d-md-block">
+            <main class="col-md-9 col-lg-10 d-md-block g-0">
                 @yield('content')
             </main>
         </div>

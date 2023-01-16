@@ -12,8 +12,8 @@
             </div>
             @endif
         </div> --}}
-    <h1>Create Type</h1>
-    <div class="row bg-white">
+    <h1 class="text-center m-3">Create Type</h1>
+    <div class="row bg-white m-2">
         <div class="col-12">
             <form action="{{ route('admin.types.store') }}" method="POST" enctype="multipart/form-data" class="p-4">
                 @csrf

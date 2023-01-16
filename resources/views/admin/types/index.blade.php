@@ -1,9 +1,9 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h1>Types</h1>
-    <div class="text-end">
-        <a class="btn btn-success" href="{{ route('admin.types.create') }}">Create a new Type</a>
+    <h1 class="text-center m-3">Types</h1>
+    <div class="text-end mx-3">
+        <a class="btn btn-success" href="{{ route('admin.types.create') }}"><i class="fa-solid fa-plus"></i></a>
     </div>
 
     @if (session()->has('message'))
@@ -16,8 +16,8 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
-                <th scope="col">Types</th>
-                <th scope="col">Azioni</th>
+                <th scope="col" class="col-9">Types</th>
+                <th scope="col" class="text-center">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -25,8 +25,8 @@
                 <tr>
                     <th scope="row">{{ $type->id }}</th>
                     <td>{{ $type->name }}</td>
-                    <td>{{ count($type->projects) }}</td>
-                    <td>
+                    <td class="px-4">{{ count($type->projects) }}</td>
+                    <td class="text-center">
                         <a href="{{ route('admin.types.show', $type->slug) }}" class="btn btn-success">
                             <i class="fa-solid fa-eye"></i>
                         </a>
