@@ -27,6 +27,10 @@
 
             <p class="mt-4">{!! $project->content !!}</p>
         </div>
+        <div class="my-3">
+            <a href="{{ url($project->git_link) }}">{{ $project->git_link }}</a>
+            {{-- <p>{{ $project->git_link }}</p> --}}
+        </div>
 
         <div class="my-3">
             <h5>Tags</h5>

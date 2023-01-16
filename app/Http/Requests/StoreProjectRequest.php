@@ -28,7 +28,8 @@ class StoreProjectRequest extends FormRequest
             'content' => 'nullable',
             'cover_image' => 'nullable|image|max: 250',
             'type_id' => 'nullable|exists:types,id',
-            'tags' => 'nullable|exists:tags,id'
+            'tags' => 'nullable|exists:tags,id',
+            'git_link' => 'nullable'
 
         ];
     }

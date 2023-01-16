@@ -30,6 +30,7 @@
                     </div>
                 @enderror
             </div>
+
             <div class="mb-3">
                 <img id="uploadPreview" width="100" src="https://via.placeholder.com/300x200">
                 <label for="create_cover_image" class="form-label">Immagine</label>
@@ -39,14 +40,16 @@
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
+
             <div class="mb-3">
                 <label for="git_link" class="form-label">Git</label>
-                <input type="link" name="git_link" id="git_link"
-                    class="form-control  @error('git_link') is-invalid @enderror">
+                <input type="text" class="form-control @error('git_link') is-invalid @enderror" id="git_link"
+                    name="git_link">
                 @error('git_link')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
+
             <div class="mb-3">
                 <label for="type_id" class="form-label">Select Type</label>
                 <select name="type_id" id="type_id" class="form-control @error('type_id') is-invalid @enderror">

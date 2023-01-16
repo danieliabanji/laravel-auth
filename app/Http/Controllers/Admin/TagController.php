@@ -91,7 +91,6 @@ class TagController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Tag  $tag
-     * @return \Illuminate\Http\Response
      */
     public function destroy(Tag $tag)
     {
