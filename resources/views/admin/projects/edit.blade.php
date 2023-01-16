@@ -59,7 +59,7 @@
                 @enderror
             </div>
             @foreach ($tags as $tag)
-                <div class="form-check form-check-inline">
+                <div class="form-check form-check-inline my-3">
 
                     @if (old('tags'))
                         <input type="checkbox" class="form-check-input" id="{{ $tag->slug }}" name="tags[]"
@@ -74,29 +74,11 @@
             @error('tags')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
-            {{-- <div class="mb-3">
-                <label for="tags" class="form-label">Tags</label>
-                <select multiple class="form-select" name="tags[]" id="tags">
-                    <option value="">Seleziona tag</option>
-                    @forelse ($tags as $tag)
-                        @if ($errors->any())
-                            <option value="{{ $tag->id }}" {{ in_array($tag->id, old('tags[]')) ? 'selected' : '' }}>
-                                {{ $tag->name }}</option>
-                        @else
-                            <option value="{{ $tag->id }}"
-                                {{ $project->tags->contains($tag->id) ? 'selected' : '' }}>
-                                {{ $tag->name }}</option>
-                        @endif
-                    @empty
-                        <option value="">No tag</option>
-                    @endforelse
 
-                </select>
-
-            </div> --}}
-
-            <button type="submit" class="btn btn-success">Aggiungi</button>
-            <button type="reset" class="btn btn-danger">Resetta</button>
+            <div class="my-5">
+                <button type="submit" class="btn btn-success">Aggiungi</button>
+                <button type="reset" class="btn btn-danger">Resetta</button>
+            </div>
         </form>
     </div>
 @endsection
